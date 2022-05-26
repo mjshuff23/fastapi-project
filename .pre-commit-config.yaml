@@ -26,27 +26,6 @@ repos:
     rev: "4.0.1" # pick a git hash / tag to point to
     hooks:
       - id: flake8
-  - repo: local
-    # We do not use pre-commit/mirrors-mypy,
-    # as it comes with opinionated defaults
-    # (like --ignore-missing-imports)
-    # and is difficult to configure to run
-    # with the dependencies correctly installed.
-    hooks:
-      - id: mypy
-        name: mypy
-        entry: "./run-mypy"
-        language: python
-        # use your preferred Python version
-        language_version: python3.10
-        additional_dependencies: ["mypy==0.790"]
-        types: [python]
-        # use require_serial so that script
-        # is only called once per commit
-        require_serial: true
-        # Print the number of files as a sanity-check
-        verbose: true
-  # Test
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: "v2.6.2" # Use the sha or tag you want to point at
     hooks:

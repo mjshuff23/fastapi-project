@@ -24,5 +24,7 @@ A project where I am hoping to create a basic skeleton utilizing: FastAPI, Next.
    2. Create `.pre-commit-config.yaml` (pre-commit configuration file). View sample with `pre-commit sample-config`
       1. **`WARNING`**: The `sample-config` is out of date and may cause an error with `Black`
    3. Run `pre-commit install` to set up the git hook scripts (now pre-commit will run automatically on git commit)
-   4. `pre-commit run --all-files` to run pre-commit on all files
-   5. `pre-commit autoupdate` update all revisions in `.pre-commit-config.yaml`
+   4. Add whatever hooks you want: `black`, `isort`, `absolufy-imports`, `flake8`, `mypy`, `prettier`, etc...)
+   5. `pre-commit run --all-files` to run pre-commit on all files
+   6. `pre-commit autoupdate` update all revisions in `.pre-commit-config.yaml`
+4. Install **MyPy** with `pipenv install mypy`
