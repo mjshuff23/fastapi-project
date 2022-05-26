@@ -18,7 +18,6 @@ app = FastAPI()
 app.add_middleware(DBSessionMiddleware, db_url=os.environ["DATABASE_URL"])
 
 
-# Decorator (does something to the method under it)
 @app.get("/")
 def root() -> User:
     user = User(**external_data)
