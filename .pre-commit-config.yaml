@@ -1,28 +1,52 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
     hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: check-added-large-files
--   repo: https://github.com/psf/black
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/psf/black
     rev: 22.3.0
     hooks:
-    -   id: black
+      - id: black
         exclude: ^dist/
-- repo: https://github.com/pycqa/isort
-  rev: 5.10.1
-  hooks:
-    - id: isort
-      name: isort (python)
-- repo: https://github.com/MarcoGorelli/absolufy-imports
-  rev: v0.3.1
-  hooks:
-    - id: absolufy-imports
-- repo: https://github.com/pycqa/flake8
-  rev: ''  # pick a git hash / tag to point to
-  hooks:
-    - id: flake8
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+  - repo: https://github.com/MarcoGorelli/absolufy-imports
+    rev: v0.3.1
+    hooks:
+      - id: absolufy-imports
+  - repo: https://github.com/pycqa/flake8
+    rev: "4.0.1" # pick a git hash / tag to point to
+    hooks:
+      - id: flake8
+  - repo: local
+    # We do not use pre-commit/mirrors-mypy,
+    # as it comes with opinionated defaults
+    # (like --ignore-missing-imports)
+    # and is difficult to configure to run
+    # with the dependencies correctly installed.
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: "./run-mypy"
+        language: python
+        # use your preferred Python version
+        language_version: python3.10
+        additional_dependencies: ["mypy==0.790"]
+        types: [python]
+        # use require_serial so that script
+        # is only called once per commit
+        require_serial: true
+        # Print the number of files as a sanity-check
+        verbose: true
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: "v2.6.2" # Use the sha or tag you want to point at
+    hooks:
+      - id: prettier
