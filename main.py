@@ -1,5 +1,6 @@
-from fastapi import FastAPI
 from typing import Union
+
+from fastapi import FastAPI
 
 # Initialize Server
 app = FastAPI()
@@ -8,6 +9,7 @@ app = FastAPI()
 @app.get("/")
 def root():
     return {"message": "Hello, world!"}
+
 
 @app.get("/items/{user_id}")
 def read_item(user_id: Union[int, str]):
