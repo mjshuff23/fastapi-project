@@ -7,6 +7,11 @@ name = "pypi"
 fastapi = {extras = ["all"], version = "*"}
 pre-commit = "*"
 mypy = "*"
+fastapi-sqlalchemy = "*"
+alembic = "*"
+wheel = "*"
+psycopg2 = "*"
+uvicorn = "*"
 
 [dev-packages]
 

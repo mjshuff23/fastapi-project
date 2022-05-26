@@ -1,15 +1,15 @@
 import os
 from typing import Union
 
+import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi_sqlalchemy import DBSessionMiddleware, db
+from models.models import Author as ModelAuthor
+from models.models import Book as ModelBook
 from schema.index import Author as SchemaAuthor
 from schema.index import Book as SchemaBook
 from schema.index import User, external_data
-
-from models.models import Author as ModelAuthor
-from models.models import Book as ModelBook
 
 load_dotenv(".env")
 
@@ -57,3 +57,7 @@ def read_item(user_id: Union[int, str]) -> dict:
     if isinstance(user_id, int):
         user_id = str(user_id)
     return {"user_id": user_id}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
